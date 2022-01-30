@@ -5,33 +5,36 @@ import 'package:flutter_login/core/app.colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppTextStyles {
-  static final TextStyle title = GoogleFonts.inter(
+  static final TextStyle title = GoogleFonts.nunito(
     color: AppColors.blue_300,
-    fontSize: 64,
+    fontSize: 64.0,
     fontWeight: FontWeight.w800,
+    height: 1.0,
   );
 
-  static final TextStyle subTitle = GoogleFonts.inter(
+  static final TextStyle subTitle = GoogleFonts.nunito(
     color: AppColors.blue_100,
-    fontSize: 36,
+    fontSize: 36.0,
     fontWeight: FontWeight.w800,
+    height: 1.0,
   );
 
-  static final TextStyle body = GoogleFonts.inter(
+  static final TextStyle body = GoogleFonts.nunito(
     color: AppColors.blue_200,
-    fontSize: 16,
+    fontSize: 16.0,
+    fontWeight: FontWeight.w400,
+    decoration: TextDecoration.none
+  );
+
+  static final TextStyle placeholder = GoogleFonts.nunito(
+    color: AppColors.blue_100,
+    fontSize: 16.0,
     fontWeight: FontWeight.w400,
   );
 
-  static final TextStyle placeholder = GoogleFonts.inter(
-    color: AppColors.blue_100,
-    fontSize: 16,
-    fontWeight: FontWeight.w300,
-  );
-
-  static final TextStyle button = GoogleFonts.inter(
+  static final TextStyle button = GoogleFonts.nunito(
     color: AppColors.white,
-    fontSize: 20,
+    fontSize: 20.0,
     fontWeight: FontWeight.w400,
   );
 }
