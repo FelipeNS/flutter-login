@@ -34,7 +34,7 @@ class AppTextStyles {
 
   static final TextStyle button = GoogleFonts.nunito(
     color: AppColors.white,
-    fontSize: 20.0,
-    fontWeight: FontWeight.w400,
+    fontSize: 18.0,
+    fontWeight: FontWeight.w600,
   );
 }

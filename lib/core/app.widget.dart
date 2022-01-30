@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_login/view/signin.view.dart';
+import 'package:flutter_login/view/signup.view.dart';
 
 class AppWidget extends StatelessWidget {
   const AppWidget({ Key? key }) : super(key: key);
@@ -9,7 +10,7 @@ class AppWidget extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Flutter Login",
-      home: SigninView(),
+      home: SignupView(),
     );
   }
 }
