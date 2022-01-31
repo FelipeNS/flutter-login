@@ -16,7 +16,9 @@ class SignupView extends StatelessWidget {
         backgroundColor: AppColors.white,
         shadowColor: AppColors.shadow,
         leading: IconButton(
-          onPressed: () => {},
+          onPressed: () => {
+            Navigator.pop(context)
+          },
           icon: Icon(
             Feather.arrow_left,
             size: 24,

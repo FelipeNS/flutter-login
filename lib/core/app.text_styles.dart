@@ -26,6 +26,13 @@ class AppTextStyles {
     decoration: TextDecoration.none
   );
 
+  static final TextStyle bodyBold = GoogleFonts.nunito(
+    color: AppColors.blue_200,
+    fontSize: 16.0,
+    fontWeight: FontWeight.w700,
+    decoration: TextDecoration.none
+  );
+
   static final TextStyle placeholder = GoogleFonts.nunito(
     color: AppColors.blue_100,
     fontSize: 16.0,

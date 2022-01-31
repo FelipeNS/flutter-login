@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_login/core/app.button_styles.dart';
 import 'package:flutter_login/core/app.colors.dart';
@@ -141,11 +142,21 @@ class SigninView extends StatelessWidget {
                     const SizedBox(
                       height: 16.0,
                     ),
-                    Text(
-                      'Não tem uma conta? Cadastre-se aqui',
-                      style: AppTextStyles.body,
-                      textAlign: TextAlign.center,
-                    )
+                    Text.rich(
+                      TextSpan(
+                        text: 'Não tem uma conta? ',
+                        style: AppTextStyles.body,
+                        children: [
+                          TextSpan(
+                            text: 'Cadastre-se aqui',
+                            style: AppTextStyles.bodyBold,
+                            recognizer: TapGestureRecognizer()..onTap = () => {
+                              Navigator.pushNamed(context, '/signup')
+                            }
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),
