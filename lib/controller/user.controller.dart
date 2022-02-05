@@ -10,7 +10,11 @@ class UserController {
   );
 
   Future<UserModel> create(UserViewModel model) async {
+    model.loading = true;
+
     var user = await _repository.create(model);
+
+    model.loading = false;
 
     return user;
   }

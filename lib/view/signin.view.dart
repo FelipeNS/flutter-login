@@ -133,7 +133,7 @@ class SigninView extends StatelessWidget {
                           _formKey.currentState!.save()
                         }
                       },
-                      style: ButtonStyles.primary,
+                      style: AppButtonStyles.primary,
                       child: Text(
                         'Login',
                         style: AppTextStyles.button,

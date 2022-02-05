@@ -7,11 +7,18 @@ import 'package:flutter_login/core/core.dart';
 import 'package:flutter_login/repository/user.repository.dart';
 import 'package:flutter_login/view-model/user.viewmodel.dart';
 
-class SignupView extends StatelessWidget {
-  SignupView({ Key? key }) : super(key: key);
+class SignupView extends StatefulWidget {
+  const SignupView({ Key? key }) : super(key: key);
 
+  @override
+  State<SignupView> createState() => _SignupViewState();
+}
+
+class _SignupViewState extends State<SignupView> {
   final _formKey = GlobalKey<FormState>();
+
   final _controller = UserController(UserRepository());
+
   var model = UserViewModel();
 
   @override
@@ -198,15 +205,30 @@ class SignupView extends StatelessWidget {
                       const SizedBox(
                         height: 16.0,
                       ),
-                      TextButton(
+                      model.loading 
+                      ? TextButton(
+                        onPressed: () => {},
+                        style: AppButtonStyles.primary,
+                        child: SizedBox(
+                          height: 18.0,
+                          width: 18.0,
+                          child: CircularProgressIndicator(
+                            backgroundColor: AppColors.blue_100,
+                            color: AppColors.white,
+                            strokeWidth: 2.0,
+                          ),
+                        ),
+                      )
+                      : TextButton(
                         onPressed: () {
                           if(_formKey.currentState!.validate()) {
                             _formKey.currentState!.save();
                           }
-
-                          _controller.create(model).then((value) => print(value.token));
+                          
+                          setState(() {});
+                          _controller.create(model).then((value) => setState(() {}));
                         },
-                        style: ButtonStyles.primary,
+                        style: AppButtonStyles.primary,
                         child: Text(
                           'Register',
                           style: AppTextStyles.button,
