@@ -3,16 +3,14 @@ import 'package:flutter_login/repository/user.repository.dart';
 import 'package:flutter_login/view-model/user.viewmodel.dart';
 
 class UserController {
-  UserRepository _repository;
+  final UserRepository _repository;
 
   UserController(
     this._repository,
-  ) {
-    _repository = UserRepository();
-  }
+  );
 
   Future<UserModel> create(UserViewModel model) async {
-    user = await _repository.create(model);
+    var user = await _repository.create(model);
 
     return user;
   }
