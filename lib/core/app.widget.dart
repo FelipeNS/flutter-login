@@ -11,9 +11,10 @@ class AppWidget extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: "Flutter Login",
       routes: {
-        '/': (context) => SigninView(),
+        '/signin': (context) => SigninView(),
         '/signup': (context) => SignupView()
       },
+      initialRoute: '/signin',
     );
   }
 }
