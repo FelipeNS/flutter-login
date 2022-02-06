@@ -5,7 +5,9 @@ import 'package:flutter_login/controller/user.controller.dart';
 import 'package:flutter_login/core/app.button_styles.dart';
 import 'package:flutter_login/core/core.dart';
 import 'package:flutter_login/repository/user.repository.dart';
+import 'package:flutter_login/store/app.store.dart';
 import 'package:flutter_login/view-model/user.viewmodel.dart';
+import 'package:provider/provider.dart';
 
 class SignupView extends StatefulWidget {
   const SignupView({ Key? key }) : super(key: key);
@@ -16,13 +18,13 @@ class SignupView extends StatefulWidget {
 
 class _SignupViewState extends State<SignupView> {
   final _formKey = GlobalKey<FormState>();
-
   final _controller = UserController(UserRepository());
-
   var model = UserViewModel();
 
   @override
   Widget build(BuildContext context) {
+    var store = Provider.of<AppStore>(context);
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.white,
@@ -197,7 +199,7 @@ class _SignupViewState extends State<SignupView> {
                               return null;
                             },
                             onSaved: (value) => {
-                              model.email = value
+                              model.password = value
                             },
                           ),
                         ),
@@ -226,7 +228,17 @@ class _SignupViewState extends State<SignupView> {
                           }
                           
                           setState(() {});
-                          _controller.create(model).then((value) => setState(() {}));
+                          _controller.create(model).then((value) {
+                            setState(() {});
+                            store.setUser(
+                              value.id,
+                              value.name,
+                              value.email,
+                              value.avatar,
+                              value.token
+                            );
+                            Navigator.pushNamed(context, '/');
+                          });
                         },
                         style: AppButtonStyles.primary,
                         child: Text(

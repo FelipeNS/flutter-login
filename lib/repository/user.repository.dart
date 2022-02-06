@@ -13,6 +13,7 @@ class UserRepository implements IUser {
     user.name = model.name;
     user.email = model.email;
     user.password = model.password;
+    user.avatar = "https://i.pravatar.cc/400";
     user.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
 
     return user;
