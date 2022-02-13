@@ -7,5 +7,7 @@ class AppColors {
   static final Color blue_200 = Color(0xFF064F77);
   static final Color blue_100 = Color(0xFF54849D);
 
+  static final Color error = Color(0xFFFF5959);
+
   static final Color shadow = Color.fromRGBO(2, 41, 62, 0.1);
 }

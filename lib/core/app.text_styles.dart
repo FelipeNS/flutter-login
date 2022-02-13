@@ -44,4 +44,11 @@ class AppTextStyles {
     fontSize: 18.0,
     fontWeight: FontWeight.w600,
   );
+
+  static final TextStyle errorMessage = GoogleFonts.nunito(
+    color: AppColors.error,
+    fontSize: 16.0,
+    fontWeight: FontWeight.w400,
+    decoration: TextDecoration.none
+  );
 }

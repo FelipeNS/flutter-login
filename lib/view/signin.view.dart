@@ -1,18 +1,32 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_login/controller/auth.controller.dart';
 import 'package:flutter_login/core/app.button_styles.dart';
 import 'package:flutter_login/core/app.colors.dart';
 import 'package:flutter_login/core/app.text_styles.dart';
 import 'package:flutter_login/core/core.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:flutter_login/repository/aut.repository.dart';
+import 'package:flutter_login/store/app.store.dart';
+import 'package:flutter_login/view-model/auth.viewmodel.dart';
+import 'package:provider/provider.dart';
 
-class SigninView extends StatelessWidget {
-  SigninView({ Key? key }) : super(key: key);
+class SigninView extends StatefulWidget {
+  const SigninView({ Key? key }) : super(key: key);
 
+  @override
+  State<SigninView> createState() => _SigninViewState();
+}
+
+class _SigninViewState extends State<SigninView> {
   final _formKey = GlobalKey<FormState>();
+  final _controller = AuthController(AuthRepository());
+  var model = AuthViewModel();
 
   @override
   Widget build(BuildContext context) {
+    var store = Provider.of<AppStore>(context);
+
     return Scaffold(
       backgroundColor: AppColors.white,
       body: Container(
@@ -84,6 +98,9 @@ class SigninView extends StatelessWidget {
                             }
                             return null;
                           },
+                          onSaved: (value) => {
+                            model.email = value
+                          },
                         ),
                       ),
                     ),
@@ -121,17 +138,62 @@ class SigninView extends StatelessWidget {
                               color: AppColors.blue_100,
                             ),
                           ),
+                          onSaved: (value) => {
+                            model.password = value
+                          },
                         ),
                       ),
                     ),
                     const SizedBox(
                       height: 16.0,
                     ),
-                    TextButton(
-                      onPressed: () => {
+                    model.loading
+                    ? TextButton(
+                      onPressed: () => {},
+                      style: AppButtonStyles.primary,
+                      child: SizedBox(
+                        height: 18.0,
+                        width: 18.0,
+                        child: CircularProgressIndicator(
+                          backgroundColor: AppColors.blue_100,
+                          color: AppColors.white,
+                          strokeWidth: 2.0,
+                        ),
+                      ),
+                    )
+                    : TextButton(
+                      onPressed: () {
                         if(_formKey.currentState!.validate()) {
-                          _formKey.currentState!.save()
+                          _formKey.currentState!.save();
                         }
+
+                        setState(() {});
+                        _controller.login(model).then((value) {
+                          setState(() {});
+
+                          store.setUser(
+                            value.id,
+                            value.name,
+                            value.email,
+                            value.avatar,
+                            value.token,
+                          );
+                          Navigator.pushNamed(context, '/');
+                        }).catchError((error) {
+                          setState(() {});
+
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                error.message.toString(),
+                                style: AppTextStyles.errorMessage,
+                              ),
+                              behavior: SnackBarBehavior.floating,
+                              backgroundColor: AppColors.white,
+                              elevation: 2.0,
+                            ),
+                          );
+                        });
                       },
                       style: AppButtonStyles.primary,
                       child: Text(
