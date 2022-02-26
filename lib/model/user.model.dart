@@ -19,7 +19,6 @@ class UserModel {
     id = json['id'];
     name = json['name'];
     email = json['email'];
-    password = json['password'];
     avatar = json['avatar'];
     token = json['token'];
   }

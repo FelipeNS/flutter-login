@@ -12,9 +12,17 @@ class UserController {
   Future<UserModel> create(UserViewModel model) async {
     model.loading = true;
 
-    var user = await _repository.create(model);
+    var user;
 
-    model.loading = false;
+    await _repository.create(model).then((value) {
+      model.loading = false;
+
+      user = value;
+    }).catchError((error) {
+      model.loading = false;
+
+      throw Exception(error.message.toString());
+    });
 
     return user;
   }

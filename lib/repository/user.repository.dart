@@ -1,21 +1,28 @@
+import 'dart:convert';
+
 import 'package:flutter_login/interface/user.interface.dart';
 import 'package:flutter_login/model/user.model.dart';
+import 'package:flutter_login/services/services.dart';
 import 'package:flutter_login/view-model/user.viewmodel.dart';
-
+import 'package:http/http.dart' as http;
 class UserRepository implements IUser {
   @override
   Future<UserModel> create(UserViewModel model) async {
-    await Future.delayed(const Duration(milliseconds: 1500));
+    var response = await http.post(ApiService.store,
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({
+        'name': model.name,
+        'email': model.email,
+        'password': model.password,
+      })
+    );
 
-    var user = UserModel();
+    var body = jsonDecode(response.body);
 
-    user.id = "asd123asd33g";
-    user.name = model.name;
-    user.email = model.email;
-    user.password = model.password;
-    user.avatar = "https://i.pravatar.cc/400";
-    user.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
+    if(response.statusCode != 201) {
+      throw Exception(response.headers);
+    }
 
-    return user;
+    return UserModel.fromJson(body);
   }
 }

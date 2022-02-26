@@ -12,7 +12,7 @@ class AuthController {
   Future<UserModel> login(AuthViewModel model) async {
     model.loading = true;
 
-    var user ;
+    var user;
 
     await _repository.login(model).then((value) {
       model.loading = false;

@@ -238,6 +238,20 @@ class _SignupViewState extends State<SignupView> {
                               value.token
                             );
                             Navigator.pushNamed(context, '/');
+                          }).catchError((error) {
+                            setState(() {});
+
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  error.message.toString(),
+                                  style: AppTextStyles.errorMessage,
+                                ),
+                                behavior: SnackBarBehavior.floating,
+                                backgroundColor: AppColors.white,
+                                elevation: 2.0,
+                              ),
+                            );
                           });
                         },
                         style: AppButtonStyles.primary,
