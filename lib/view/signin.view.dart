@@ -206,11 +206,11 @@ class _SigninViewState extends State<SigninView> {
                     ),
                     Text.rich(
                       TextSpan(
-                        text: 'Não tem uma conta? ',
+                        text: 'Don\'t have an account? ',
                         style: AppTextStyles.body,
                         children: [
                           TextSpan(
-                            text: 'Cadastre-se aqui',
+                            text: 'Register here',
                             style: AppTextStyles.bodyBold,
                             recognizer: TapGestureRecognizer()..onTap = () => {
                               Navigator.pushNamed(context, '/signup')
