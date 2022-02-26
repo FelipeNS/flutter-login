@@ -20,7 +20,7 @@ class UserRepository implements IUser {
     var body = jsonDecode(response.body);
 
     if(response.statusCode != 201) {
-      throw Exception(response.headers);
+      throw Exception(body['message']);
     }
 
     return UserModel.fromJson(body);

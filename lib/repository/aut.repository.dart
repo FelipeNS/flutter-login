@@ -1,28 +1,28 @@
+import 'dart:convert';
+
 import 'package:flutter_login/interface/auth.interface.dart';
 import 'package:flutter_login/model/user.model.dart';
+import 'package:flutter_login/services/services.dart';
 import 'package:flutter_login/view-model/auth.viewmodel.dart';
+import 'package:http/http.dart' as http;
 
 class AuthRepository implements IAuth {
   @override
   Future<UserModel> login(AuthViewModel model) async {
-    await Future.delayed(const Duration(milliseconds: 1500));
+    var response = await http.post(ApiService.auth,
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({
+        'email': model.email,
+        'password': model.password,
+      })
+    );
 
-    if(model.email != "user@email.com") {
-      throw Exception("Incorrect email or password");
+    var body = jsonDecode(response.body);
+
+    if(response.statusCode != 200) {
+      throw Exception(body['message']);
     }
 
-    if(model.password != "123456") {
-      throw Exception("Incorrect email or password");
-    }
-
-    var user = UserModel();
-
-    user.id = "asd123asd33g";
-    user.name = "John Doe";
-    user.email = model.email;
-    user.avatar = "https://i.pravatar.cc/400";
-    user.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
-
-    return user;
+    return UserModel.fromJson(body);
   }
 }
