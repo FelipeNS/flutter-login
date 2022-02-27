@@ -1,16 +1,39 @@
-# flutter_login
+<h1 align="center">
+  <img alt="Letmeask" src=".github/cover.png" />
+</h1>
 
-A new Flutter project.
+<br>
 
-## Getting Started
+## 🧪 Tecnologias
 
-This project is a starting point for a Flutter application.
+Esse projeto foi desenvolvido com as seguintes tecnologias:
 
-A few resources to get you started if this is your first Flutter project:
+- [Flutter](https://flutter.dev/)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## 🚀 Como executar
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Clone o projeto e acesse a pasta do mesmo.
+
+```bash
+$ git clone https://github.com/FelipeNS/flutter-login.git
+$ cd flutter-login
+```
+
+Para iniciá-lo, siga os passos abaixo:
+```bash
+# Instalar as dependências
+$ flutter pub get
+
+# Iniciar o projeto
+$ flutter run lib/main.dart
+```
+
+Lembrando que será necessário utilizar a [API feita em Node](https://github.com/FelipeNS/node-login) para que o app funcione como o esperado.
+
+## 💻 Projeto
+
+Um app básico feito para aprendizado de alguns fundamentos de flutter e dart consumindo uma API REST.
+
+---
+
+Feito com 💜 by Felipe Novais
